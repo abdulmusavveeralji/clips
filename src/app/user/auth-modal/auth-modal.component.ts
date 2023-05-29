@@ -10,7 +10,7 @@ export class AuthModalComponent implements OnInit{
   constructor(public modal: ModalService) {
   }
   ngOnInit(): void {
-    this.modal.register('Auth');
+    this.modal.register('auth');
     this.modal.register('test');
   }
 
