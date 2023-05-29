@@ -28,4 +28,8 @@ export class ModalService {
       visible: false
     })
   }
+
+  unregister(id: string) {
+    this.modals = this.modals.filter(e => e.id !== id);
+  }
 }
