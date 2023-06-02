@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class TabsComponent {
 
   @Input() tabTitle = '';
+  @Input() active = false;
 }

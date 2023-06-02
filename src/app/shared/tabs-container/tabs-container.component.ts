@@ -9,6 +9,17 @@ import {TabsComponent} from "../tabs/tabs.component";
 export class TabsContainerComponent implements AfterContentInit {
   @ContentChildren(TabsComponent) tabs: QueryList<TabsComponent> = new QueryList<TabsComponent>();
   ngAfterContentInit(): void {
+    let activeTabs = this.tabs.filter(f => f.active);
+
+    if(!activeTabs || activeTabs.length !==0){
+      this.selectTab(this.tabs.first);
+    }
+  }
+
+  selectTab(tab: TabsComponent) {
+    this.tabs.forEach(e => e.active = false);
+
+    tab.active = true;
   }
 
 }
