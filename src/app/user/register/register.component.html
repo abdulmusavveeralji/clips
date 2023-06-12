@@ -6,7 +6,8 @@
     <input type="text"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Name" formGroupName="name"/>
+           placeholder="Enter Name" formControlName="name"/>
+  <p>{{ registerForm.get('name')?.value | json }}</p>
   </div>
   <!-- Email -->
   <div class="mb-3">
@@ -14,7 +15,7 @@
     <input type="email"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Email" formGroupName="email"/>
+           placeholder="Enter Email" formControlName="email"/>
   </div>
   <!-- Age -->
   <div class="mb-3">
@@ -22,7 +23,7 @@
     <input type="number"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-            formGroupName="age"/>
+            formControlName="age"/>
   </div>
   <!-- Password -->
   <div class="mb-3">
@@ -30,7 +31,7 @@
     <input type="password"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Password" formGroupName="password"/>
+           placeholder="Password" formControlName="password"/>
   </div>
   <!-- Confirm Password -->
   <div class="mb-3">
@@ -38,7 +39,7 @@
     <input type="password"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Confirm Password" formGroupName="confirmPassword" />
+           placeholder="Confirm Password" formControlName="confirmPassword" />
   </div>
   <!-- Phone Number -->
   <div class="mb-3">
@@ -46,7 +47,7 @@
     <input type="text"
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Phone Number" formGroupName="phoneNumber"/>
+           placeholder="Enter Phone Number" formControlName="phoneNumber"/>
   </div>
   <button type="submit"
           class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
