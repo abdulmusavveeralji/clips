@@ -17,9 +17,13 @@
   <div class="mb-3">
     <label class="inline-block mb-2">Password</label>
     <input type="password" name="password" [(ngModel)]="credentials.password"
+           #password="ngModel" required
            class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                 duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
            placeholder="Password" />
+    <p class="text-red-400" *ngIf="password.errors && password.touched && password.dirty">
+      Password is invalid
+    </p>
   </div>
   <button type="submit"
           class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
@@ -27,4 +31,3 @@
     Submit
   </button>
 </form>
-{{ loginForm.valid }}
