@@ -11,4 +11,7 @@ export class LoginComponent {
     password: ''
   };
 
+  login() {
+    console.log(this.credentials);
+  }
 }
