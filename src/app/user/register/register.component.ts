@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import IUser from "../../models/user.models";
+import {RegisterValidator} from "../validators/register-validator";
 
 @Component({
   selector: 'app-register',
@@ -41,7 +42,7 @@ export class RegisterComponent {
     password: this.password,
     confirmPassword: this.confirmPassword,
     phoneNumber: this.phoneNumber
-  });
+  }, [RegisterValidator.match('password', 'confirmPassword')]);
   showAlert = false;
   alertMsg = '';
   alertColor = 'blue';
