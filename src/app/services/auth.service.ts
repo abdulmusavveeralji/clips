@@ -3,6 +3,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
 import IUser from "../models/user.models";
 import {delay, map, Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
 
   constructor(
     private auth: AngularFireAuth,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private router: Router
   ) {
     this.usersCollection = db.collection<IUser>('users')
     this.isAuthenticated$ = auth.user.pipe(
@@ -47,5 +49,14 @@ export class AuthService {
     await userCred.user.updateProfile({
       displayName: userData.name
   })
+  }
+
+
+  public async logOut(ev: Event) {
+    if(ev)
+      ev.preventDefault();
+    await this.auth.signOut();
+
+    await this.router.navigateByUrl('/')
   }
 }
