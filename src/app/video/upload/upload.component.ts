@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class UploadComponent {
 
+  isDragover = false;
+
+  storeFile(e: Event) {
+    this.isDragover = false;
+  }
 }
