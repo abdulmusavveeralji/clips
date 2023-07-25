@@ -4,7 +4,8 @@
     <div class="font-bold mb-6">Upload Video</div>
 
     <!-- Upload Dropbox -->
-    <div appEventBlocker
+    <div  *ngIf="!nextStep; else uploadFormCtl"
+        appEventBlocker
          (dragend)="isDragover = false"
          (dragleave)="isDragover = false"
          (dragenter)="isDragover = true"
@@ -19,10 +20,10 @@
     </div>
 
     <!-- Video Editor -->
-    <div>
+    <ng-template #uploadFormCtl>
 
       <!-- Form -->
-      <form>
+      <form [formGroup]="" (ngSubmit)="uploadFile()">
         <!-- Screenshots -->
         <h2 class="mb-4 text-xl">Select a Thumbnail</h2>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -40,8 +41,7 @@
         <!-- Title -->
         <div class="mt-4">
           <label class="block text-xl mb-4">Title</label>
-          <input type="text" class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-            duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400">
+          <app-inputs [control]="title" placeholder="Enter Title"></app-inputs>
         </div>
 
         <div class="mt-4 text-right">
@@ -50,6 +50,6 @@
           </button>
         </div>
       </form>
-    </div>
+    </ng-template>
   </div>
 </section>
