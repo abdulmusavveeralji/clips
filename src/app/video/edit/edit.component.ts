@@ -49,6 +49,8 @@ export class EditComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.activeClip) {
       return;
     }
+    this.inSubmission = false;
+    this.showAlert = false;
     this.clipID.setValue(this.activeClip.docID || '');
     this.title.setValue(this.activeClip.title);
   }
