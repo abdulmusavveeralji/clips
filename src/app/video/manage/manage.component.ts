@@ -1,22 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ClipServiceService } from '../../services/clip-service.service';
+import IClip from '../../models/cilp.model';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css']
+  styleUrls: ['./manage.component.css'],
 })
-export class ManageComponent implements OnInit{
-
+export class ManageComponent implements OnInit {
   videoOrder = '1';
-  constructor(private route: ActivatedRoute,
-              private router: Router) {
-  }
+  clips: IClip[] = [];
+  activeClilp: IClip | null = null;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private clipService: ClipServiceService,
+    private modal: ModalService,
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params: Params) => {
-      this.videoOrder = params.sort == 2 ? params.sort : '1'
-    })
+      this.videoOrder = params.sort == 2 ? params.sort : '1';
+    });
+
+    this.clipService.getUserClips().subscribe((docs) => {
+      this.clips = [];
+      docs.forEach((doc) => {
+        this.clips.push({
+          docID: doc.id,
+          ...doc.data(),
+        });
+      });
+    });
   }
 
   sort(ev: Event) {
@@ -25,8 +42,15 @@ export class ManageComponent implements OnInit{
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        sort: value
-      }
-    })
+        sort: value,
+      },
+    });
+  }
+
+  openModal($event: MouseEvent, clip: IClip) {
+    $event.preventDefault();
+
+    this.activeClilp = clip;
+    this.modal.toggleModal('editClip');
   }
 }
